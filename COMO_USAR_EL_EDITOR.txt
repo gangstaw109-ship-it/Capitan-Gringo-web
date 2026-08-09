@@ -1,0 +1,19 @@
+CÓMO USAR EL EDITOR
+
+1. Entra a /admin e inicia sesión.
+2. Elige Inicio, Excursiones, Galerías o Contacto.
+3. Haz tus cambios y pulsa “Guardar cambios”.
+4. Pulsa “Ver página” para comprobarlos.
+
+FOTOS
+Pulsa “Agregar fotografías” o “Reemplazar”.
+Usa las flechas o arrastra para ordenar.
+Para borrar, pulsa “Eliminar” y confirma.
+
+EXCURSIONES
+Entra en Excursiones, elige una y pulsa “Editar”.
+Puedes cambiar textos, precios, listas, fotos y visibilidad.
+
+WHATSAPP
+Entra en Contacto, cambia el número una sola vez y guarda.
+

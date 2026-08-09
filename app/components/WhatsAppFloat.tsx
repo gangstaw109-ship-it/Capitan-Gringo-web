@@ -1,6 +1,6 @@
-import { site } from "../content/site";
+import type { SiteInfo } from "../lib/content";
 
-export function WhatsAppFloat() {
+export function WhatsAppFloat({ site }: { site: SiteInfo }) {
   const message = encodeURIComponent("Hola Capitán Gringo, quiero información sobre sus excursiones.");
 
   return (
@@ -16,4 +16,3 @@ export function WhatsAppFloat() {
     </a>
   );
 }
-

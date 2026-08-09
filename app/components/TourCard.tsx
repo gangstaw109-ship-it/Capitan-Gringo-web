@@ -7,7 +7,7 @@ export function TourCard({ tour, priority = false }: { tour: Tour; priority?: bo
       <Link href={`/excursiones/${tour.slug}`} className="tour-card-image" aria-label={`Ver ${tour.name}`}>
         <img
           src={tour.cardImage}
-          alt={tour.imageAlt}
+          alt={tour.cardImageAlt ?? tour.imageAlt}
           width="800"
           height="600"
           loading={priority ? "eager" : "lazy"}
@@ -35,4 +35,3 @@ export function TourCard({ tour, priority = false }: { tour: Tour; priority?: bo
     </article>
   );
 }
-

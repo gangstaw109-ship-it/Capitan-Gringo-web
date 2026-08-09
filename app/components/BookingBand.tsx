@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { site } from "../content/site";
+import { site as fallbackSite } from "../content/site";
+import type { SiteInfo } from "../lib/content";
 
-export function BookingBand({ tourName }: { tourName?: string }) {
+export function BookingBand({ tourName, site = fallbackSite }: { tourName?: string; site?: SiteInfo }) {
   const message = encodeURIComponent(
     tourName
       ? `Hola Capitán Gringo, quiero reservar ${tourName}.`

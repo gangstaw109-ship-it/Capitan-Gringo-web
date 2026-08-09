@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BookingBand } from "../components/BookingBand";
-import { galleryImages } from "../content/site";
+import { getPublicGallery, getSiteSettings } from "../lib/content";
 
 export const metadata: Metadata = {
   title: "Galería",
@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/galeria" },
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const [galleryImages, site] = await Promise.all([getPublicGallery(), getSiteSettings()]);
   return (
     <main>
       <section className="page-hero gallery-hero">
@@ -28,7 +29,7 @@ export default function GalleryPage() {
         ))}
       </section>
 
-      <BookingBand />
+      <BookingBand site={site} />
     </main>
   );
 }

@@ -1,0 +1,42 @@
+CONFIGURAR EL PANEL ADMINISTRATIVO
+
+PASO 1
+Entra en https://supabase.com y crea un proyecto.
+
+PASO 2
+En Supabase abre “SQL Editor”. Copia todo el archivo:
+supabase/SETUP_SUPABASE.sql
+Pégalo y pulsa “Run”.
+
+PASO 3
+En “Authentication” desactiva el registro público de nuevos usuarios.
+
+PASO 4
+En “Authentication > Users” crea tu usuario con correo y contraseña.
+
+PASO 5
+Abre supabase/HACER_ADMIN.sql, cambia TU_CORREO@EJEMPLO.COM por tu correo,
+cópialo en “SQL Editor” y pulsa “Run”.
+
+PASO 6
+En Supabase copia “Project URL” y “Publishable key”.
+
+PASO 7
+En Vercel abre el proyecto y entra en “Settings > Environment Variables”.
+Agrega estas dos variables:
+
+NEXT_PUBLIC_SUPABASE_URL = Project URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = Publishable key
+
+No agregues una Secret key ni una service_role key.
+
+PASO 8
+En Vercel vuelve a desplegar el último commit.
+
+PASO 9
+Abre:
+https://TU-DOMINIO.com/admin
+
+En el primer acceso, el panel copiará automáticamente todo el contenido actual
+a Supabase sin cambiar los textos, precios ni fotografías.
+

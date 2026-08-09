@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ReservationForm } from "../components/ReservationForm";
-import { site } from "../content/site";
+import { getPublicTours, getSiteSettings } from "../lib/content";
 
 export const metadata: Metadata = {
   title: "Reservar excursión",
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default async function BookingPage({ searchParams }: { searchParams: Promise<{ tour?: string }> }) {
   const { tour = "" } = await searchParams;
+  const [site, tours] = await Promise.all([getSiteSettings(), getPublicTours()]);
 
   return (
     <main className="booking-page">
@@ -37,7 +38,7 @@ export default async function BookingPage({ searchParams }: { searchParams: Prom
             <span className="eyebrow">Datos de la solicitud</span>
             <h2>Cuéntanos sobre tu viaje.</h2>
           </div>
-          <ReservationForm defaultTour={tour} />
+          <ReservationForm defaultTour={tour} site={site} tours={tours} />
         </div>
         <aside className="booking-aside">
           <div className="booking-aside-image">

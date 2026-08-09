@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { MobileActionBar } from "./components/MobileActionBar";
-import { WhatsAppFloat } from "./components/WhatsAppFloat";
-import { site } from "./content/site";
+import { SiteShell } from "./components/SiteShell";
+import { getSiteSettings } from "./lib/content";
 import "./globals.css";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.saona-tours.com"),
@@ -35,7 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const site = await getSiteSettings();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TouristInformationCenter",
@@ -56,13 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es">
       <body>
-        <a className="skip-link" href="#contenido">Saltar al contenido</a>
-        <Header />
-        <div id="contenido">{children}</div>
-        <Footer />
-        <WhatsAppFloat />
-        <MobileActionBar />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <SiteShell site={site} structuredData={structuredData}>{children}</SiteShell>
       </body>
     </html>
   );

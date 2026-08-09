@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookingBand } from "../components/BookingBand";
-import { destinations, tours } from "../content/site";
+import { destinations, getPublicTours, getSiteSettings } from "../lib/content";
 
 export const metadata: Metadata = {
   title: "Destinos",
@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/destinos" },
 };
 
-export default function DestinationsPage() {
+export default async function DestinationsPage() {
+  const [site, tours] = await Promise.all([getSiteSettings(), getPublicTours()]);
   return (
     <main>
       <section className="page-hero destinations-hero">
@@ -45,8 +46,7 @@ export default function DestinationsPage() {
         })}
       </section>
 
-      <BookingBand />
+      <BookingBand site={site} />
     </main>
   );
 }
-

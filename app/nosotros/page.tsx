@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BookingBand } from "../components/BookingBand";
-import { site } from "../content/site";
+import { getSiteSettings } from "../lib/content";
 
 export const metadata: Metadata = {
   title: "Quiénes somos",
@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/nosotros" },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const site = await getSiteSettings();
   return (
     <main>
       <section className="about-hero">
@@ -71,7 +72,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <BookingBand />
+      <BookingBand site={site} />
     </main>
   );
 }

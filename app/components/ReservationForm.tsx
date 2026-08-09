@@ -1,9 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { site, tours } from "../content/site";
+import type { Tour } from "../content/site";
+import type { SiteInfo } from "../lib/content";
 
-export function ReservationForm({ defaultTour = "" }: { defaultTour?: string }) {
+export function ReservationForm({ defaultTour = "", site, tours }: { defaultTour?: string; site: SiteInfo; tours: Tour[] }) {
   const [status, setStatus] = useState("");
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -80,4 +81,3 @@ export function ReservationForm({ defaultTour = "" }: { defaultTour?: string }) 
     </form>
   );
 }
-

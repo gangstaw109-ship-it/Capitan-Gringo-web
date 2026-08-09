@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import type { Tour } from "../content/site";
 
-type MobileTour = Pick<Tour, "slug" | "name" | "destination" | "cardImage" | "imageAlt" | "priceFrom">;
+type MobileTour = Pick<Tour, "slug" | "name" | "destination" | "cardImage" | "imageAlt" | "cardImageAlt" | "priceFrom">;
 
 export function MobileTourShowcase({ tours }: { tours: MobileTour[] }) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,7 @@ export function MobileTourShowcase({ tours }: { tours: MobileTour[] }) {
       <div className="mobile-tour-rail" ref={railRef}>
         {tours.map((tour) => (
           <Link className="mobile-tour-card" href={`/excursiones/${tour.slug}`} key={tour.slug}>
-            <img src={tour.cardImage} alt={tour.imageAlt} width="900" height="1100" />
+            <img src={tour.cardImage} alt={tour.cardImageAlt ?? tour.imageAlt} width="900" height="1100" />
             <span className="mobile-tour-card-copy">
               <small>{tour.destination}</small>
               <strong>{tour.name}</strong>

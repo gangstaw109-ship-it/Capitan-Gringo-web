@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { site } from "../content/site";
+import type { SiteInfo } from "../lib/content";
 
-export function Footer() {
+export function Footer({ site }: { site: SiteInfo }) {
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -45,4 +45,3 @@ export function Footer() {
     </footer>
   );
 }
-

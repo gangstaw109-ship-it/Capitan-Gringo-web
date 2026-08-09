@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { site } from "../content/site";
+import type { SiteInfo } from "../lib/content";
 
-export function MobileActionBar() {
+export function MobileActionBar({ site }: { site: SiteInfo }) {
   const message = encodeURIComponent("Hola Capitán Gringo, quiero información sobre sus excursiones.");
 
   return (

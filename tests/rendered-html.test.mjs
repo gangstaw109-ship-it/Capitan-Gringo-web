@@ -34,3 +34,18 @@ test("renderiza una ficha individual de excursión", async () => {
   assert.match(html, /US\$60/);
 });
 
+test("mantiene disponibles las rutas públicas principales", async () => {
+  for (const path of ["/excursiones", "/destinos", "/nosotros", "/galeria", "/reservar"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i, path);
+  }
+});
+
+test("expone el acceso administrativo sin mezclar la navegación pública", async () => {
+  const response = await render("/admin");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Panel de administración|El panel está preparado/);
+  assert.doesNotMatch(html, /Navegación principal/);
+});

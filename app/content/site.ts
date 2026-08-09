@@ -32,6 +32,9 @@ export type Tour = {
   heroImage: string;
   cardImage: string;
   imageAlt: string;
+  heroStoragePath?: string;
+  cardStoragePath?: string;
+  cardImageAlt?: string;
   duration: string;
   schedule: string;
   pickup?: string;
@@ -46,7 +49,12 @@ export type Tour = {
   restrictions?: string[];
   prices: Price[];
   bookingNote?: string;
-  gallery: { src: string; alt: string }[];
+  bookingButtonText?: string;
+  whatsappButtonText?: string;
+  requestButtonText?: string;
+  gallery: { src: string; alt: string; storagePath?: string }[];
+  visible?: boolean;
+  sortOrder?: number;
 };
 
 export const paymentNotes = [

@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookingBand } from "../../components/BookingBand";
-import { getTour, paymentNotes, site, tours } from "../../content/site";
+import { tours as fallbackTours } from "../../content/site";
+import { getPublicTour, getSiteSettings, paymentNotes } from "../../lib/content";
 
 export function generateStaticParams() {
-  return tours.map((tour) => ({ slug: tour.slug }));
+  return fallbackTours.map((tour) => ({ slug: tour.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const tour = getTour(slug);
+  const tour = await getPublicTour(slug);
   if (!tour) return {};
 
   return {
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function TourPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const tour = getTour(slug);
+  const [tour, site] = await Promise.all([getPublicTour(slug), getSiteSettings()]);
   if (!tour) notFound();
 
   const message = encodeURIComponent(`Hola Capitán Gringo, quiero información para reservar ${tour.name}.`);
@@ -42,8 +43,8 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
           <h1>{tour.name}</h1>
           <p>{tour.shortDescription}</p>
           <div className="tour-hero-actions">
-            <Link href={`/reservar?tour=${encodeURIComponent(tour.name)}`} className="button button-primary button-large">Reservar excursión</Link>
-            <a href={`https://wa.me/${site.whatsapp}?text=${message}`} target="_blank" rel="noreferrer" className="button button-glass button-large">Consultar por WhatsApp</a>
+            <Link href={`/reservar?tour=${encodeURIComponent(tour.name)}`} className="button button-primary button-large">{tour.bookingButtonText ?? "Reservar excursión"}</Link>
+            <a href={`https://wa.me/${site.whatsapp}?text=${message}`} target="_blank" rel="noreferrer" className="button button-glass button-large">{tour.whatsappButtonText ?? "Consultar por WhatsApp"}</a>
           </div>
         </div>
       </section>
@@ -115,7 +116,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
               <ul>{paymentNotes.map((note) => <li key={note}>{note}</li>)}</ul>
             </details>
           )}
-          <Link href={`/reservar?tour=${encodeURIComponent(tour.name)}`} className="button button-primary button-large full-button">Solicitar reserva</Link>
+          <Link href={`/reservar?tour=${encodeURIComponent(tour.name)}`} className="button button-primary button-large full-button">{tour.requestButtonText ?? "Solicitar reserva"}</Link>
         </aside>
       </section>
 
@@ -146,8 +147,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      <BookingBand tourName={tour.name} />
+      <BookingBand tourName={tour.name} site={site} />
     </main>
   );
 }
-
