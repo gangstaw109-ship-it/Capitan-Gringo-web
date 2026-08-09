@@ -1,0 +1,174 @@
+PÁGINA WEB DE CAPITÁN GRINGO
+GUÍA SENCILLA DE USO
+============================
+
+1. CÓMO INICIAR LA PÁGINA
+-------------------------
+
+Haga doble clic en:
+
+INICIAR_WEB.bat
+
+La primera vez puede tardar unos minutos porque comprobará e instalará las dependencias necesarias dentro de esta misma carpeta.
+
+Cuando el servidor esté listo, la página se abrirá automáticamente en Google Chrome si está instalado. Si Chrome no está disponible, utilizará su navegador predeterminado.
+
+Dirección local:
+
+http://localhost:5173
+
+Mantenga abierta la ventana negra del servidor mientras revisa la página.
+
+
+2. CÓMO DETENER LA PÁGINA
+-------------------------
+
+Haga doble clic en:
+
+DETENER_WEB.bat
+
+También puede cerrar la ventana negra donde se está ejecutando el servidor. Si Windows pregunta si desea finalizar el trabajo, responda que sí.
+
+
+3. DÓNDE ESTÁ CADA COSA
+-----------------------
+
+Contenido comercial de excursiones, precios, contacto y destinos:
+
+app\content\site.ts
+
+Páginas principales:
+
+app\page.tsx                         Inicio
+app\excursiones\page.tsx             Catálogo
+app\excursiones\[slug]\page.tsx      Fichas individuales
+app\destinos\page.tsx                Destinos
+app\nosotros\page.tsx                Quiénes somos
+app\galeria\page.tsx                 Galería
+app\reservar\page.tsx                Reserva por WhatsApp
+
+Colores, tipografías, tamaños, botones y diseño responsive:
+
+app\globals.css
+
+Imágenes:
+
+public\images\logo
+public\images\saona
+public\images\catalina
+public\images\rio-chavon
+public\images\santo-domingo
+public\images\buggies
+public\images\safari
+public\images\samana
+public\images\boats
+public\images\gallery
+
+Fuentes Garet:
+
+public\fonts\garet
+
+
+4. CÓMO CAMBIAR UNA FOTOGRAFÍA
+------------------------------
+
+La forma más sencilla es reemplazar la imagen por otra con exactamente el mismo nombre y extensión.
+
+Ejemplo:
+
+public\images\saona\mano-juan.webp
+
+Guarde antes una copia de seguridad de la imagen anterior. Para que la foto se vea bien, utilice una imagen horizontal de buena calidad y optimizada para web.
+
+Si la nueva imagen tiene otro nombre, cambie también su ruta dentro de:
+
+app\content\site.ts
+
+
+5. CÓMO MODIFICAR TEXTOS, PRECIOS O EXCURSIONES
+----------------------------------------------
+
+Abra este archivo con un editor de texto:
+
+app\content\site.ts
+
+Allí encontrará cada excursión con su nombre, descripción, horario, precios, itinerario, inclusiones y fotografías.
+
+Cambie solamente el texto que aparece entre comillas y conserve las comas, llaves y corchetes del archivo.
+
+Después de guardar, la página se actualizará automáticamente si el servidor está abierto.
+
+
+6. CÓMO CAMBIAR LOS DATOS DE CONTACTO
+-------------------------------------
+
+En la parte superior de:
+
+app\content\site.ts
+
+está el bloque llamado "site". Allí puede cambiar:
+
+- Nombre del negocio
+- Nombre legal
+- Teléfono
+- WhatsApp
+- Correo electrónico
+- Dirección
+- Horario de oficina
+- Enlaces de Facebook y Tripadvisor
+
+Para WhatsApp, escriba el número completo sin espacios ni símbolos. Ejemplo: 18097539469.
+
+
+7. TIPOGRAFÍA GARET
+-------------------
+
+No se descargó ninguna copia no autorizada de Garet.
+
+La web utiliza temporalmente alternativas visualmente similares. Cuando tenga los archivos oficiales y su licencia, colóquelos en:
+
+public\fonts\garet
+
+Dentro de esa carpeta hay un archivo README.txt con los nombres recomendados.
+
+
+8. TECNOLOGÍA UTILIZADA
+-----------------------
+
+La página está construida con React, Vite y vinext. Esta combinación permite páginas rápidas, rutas claras, buen SEO y mantenimiento centralizado.
+
+Se utiliza el puerto local 5173.
+
+
+9. ANTES DE PUBLICAR EN INTERNET
+--------------------------------
+
+Necesitará:
+
+- Un dominio web.
+- Un servicio de alojamiento compatible con aplicaciones de Vite/Cloudflare.
+- Confirmar que todos los precios, horarios, condiciones y pólizas siguen vigentes.
+- Proporcionar una política de privacidad y una política de cookies correctas para Coligrin Tours. Las páginas legales de la web anterior contenían datos de otras empresas y no se reutilizaron.
+- Revisar las fotografías y confirmar que desea mantenerlas publicadas.
+- Añadir los archivos oficiales de Garet si desea utilizar esa fuente exacta.
+
+No se necesita ningún servicio externo para probar la página localmente.
+
+
+10. IDIOMAS Y TRADUCCIÓN
+------------------------
+
+El selector de idioma aparece en la parte superior de la página.
+
+Idiomas disponibles:
+
+- Español
+- Inglés
+- Portugués
+- Alemán
+- Francés
+- Italiano
+
+La página detecta automáticamente el idioma del navegador la primera vez que se abre y recuerda la selección en ese dispositivo.
+
+El contenido original permanece en español. Las traducciones automáticas utilizan el servicio de Google Translate, por lo que para cambiar de idioma se necesita conexión a Internet. Antes de publicar la web, conviene revisar manualmente las traducciones de precios, horarios y condiciones comerciales.

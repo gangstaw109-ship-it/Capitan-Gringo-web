@@ -1,0 +1,67 @@
+SUBIR CAPITÁN GRINGO A GITHUB
+GUÍA SENCILLA
+=============================
+
+La carpeta ya está organizada como un repositorio Git y preparada para subirla con GitHub Desktop.
+
+
+OPCIÓN RECOMENDADA: GITHUB DESKTOP
+----------------------------------
+
+1. Instale GitHub Desktop desde:
+
+   https://desktop.github.com/
+
+2. Abra GitHub Desktop e inicie sesión con su cuenta de GitHub.
+
+3. En el menú superior seleccione:
+
+   File > Add local repository
+
+4. Seleccione esta carpeta:
+
+   capitan-gringo-web
+
+5. En el campo "Summary" escriba:
+
+   Primera versión de la web
+
+6. Pulse el botón:
+
+   Commit to main
+
+7. Pulse:
+
+   Publish repository
+
+8. Elija el nombre del repositorio. Se recomienda:
+
+   capitan-gringo-web
+
+9. Si no quiere que otras personas vean el código, marque la opción para mantener el repositorio privado.
+
+10. Pulse "Publish repository" para finalizar.
+
+
+IMPORTANTE
+----------
+
+- La carpeta node_modules no se incluye. Esto es correcto: GitHub instalará las dependencias usando package-lock.json.
+- Tampoco se incluyen compilaciones temporales ni archivos locales de trabajo.
+- No suba archivos .env si en el futuro contienen contraseñas o claves privadas.
+- GitHub guardará el código, pero GitHub Pages no puede publicar directamente esta aplicación. Para ponerla en Internet necesitará un alojamiento compatible con Cloudflare Workers u otro proceso de despliegue compatible.
+- Cada cambio enviado a GitHub ejecutará una comprobación automática de compilación y pruebas.
+
+
+PARA PROBAR LA COPIA ANTES DE SUBIRLA
+-------------------------------------
+
+Haga doble clic en:
+
+INICIAR_WEB.bat
+
+Después abra:
+
+http://localhost:5173
+
+Para detenerla, haga doble clic en DETENER_WEB.bat.
